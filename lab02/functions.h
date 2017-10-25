@@ -5,5 +5,6 @@
 
 void sayHello();
 void printDate();
+void printTest();
 
 #endif

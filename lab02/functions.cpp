@@ -16,3 +16,10 @@ void printDate()
   cout << "The current local time is "
        << ctime (&rawtime) << endl;
 }
+
+
+void printTest() {
+  cout << "--- test ---" <<endl;  
+  return;
+}
+ 
