@@ -118,12 +118,20 @@ string test3() {
         "fox","gorge","hop","icky","jack"};
     for (int i=0; i<10; i++)
         original.append(strings[i]);
+
+    //cout<<endl<<"ORIGINAL SIZE():"<<original.size()<<endl<<"CAPA():"<<original.get_capacity()<<endl;/////
+    
     
     cout << "Now I will make new empty Words object,\n"
         << " and then use assignment to make it a copy.\n";
     Words copy;
+    //cout<<endl<<"SIZE():"<<copy.size()<<endl<<"CAPA():"<<copy.get_capacity()<<endl;/////
+    
     copy = original;
+    //cout<<endl<<"SIZE():"<<copy.size()<<endl<<"CAPA():"<<copy.get_capacity()<<endl;/////
+    
     cout << "Verifying size and capacity of copy ...";
+    
     if (copy.size() == 10 && copy.get_capacity() == 10)
         cout << "OK. Passed.\n";
     else
