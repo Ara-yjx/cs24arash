@@ -9,28 +9,46 @@ using std::cout;
 
 // return sum of values in list
 int IntList::sum() const {
-    return 0; // REPLACE THIS NON-SOLUTION
+  int result = 0;
+  for(Node* next_node = first; next_node != NULL; next_node = next_node->next) {
+    result += next_node->info;
+  }
+
+    return result; // REPLACE THIS NON-SOLUTION
 }
 
 // returns true if value is in the list; false if not
 bool IntList::contains(int value) const {
-    return false; // REPLACE THIS NON-SOLUTION
+  for(Node* next_node = first; next_node != NULL; next_node = next_node->next) {
+    if (next_node->info == value) return true;
+  }
+  return false; // REPLACE THIS NON-SOLUTION
 }
 
 // returns maximum value in list, or 0 if empty list
 int IntList::max() const {
-    return 0; // REPLACE THIS NON-SOLUTION
+    if (first == NULL) return 0;
+    int max = first->info;
+    for(Node* next_node = first; next_node != NULL; next_node = next_node->next) {
+      if (next_node->info > max) max = next_node->info;
+    }
+    return max; // REPLACE THIS NON-SOLUTION
     
 }
 
 // returns average (arithmetic mean) of all values, or
 // 0 if list is empty
 double IntList::average() const {
-    return 0.0; // REPLACE THIS NON-SOLUTION
+  if(first == NULL) return 0;
+  else return (double)sum()/count(); // REPLACE THIS NON-SOLUTION
 }
 
 // inserts value as new node at beginning of list
 void IntList::insertFirst(int value) {
+  Node* new_first = new Node();
+  new_first->info = value;
+  new_first->next = first;
+  first = new_first;
     // IMPLEMENT
 }
 
