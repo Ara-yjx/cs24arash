@@ -76,7 +76,11 @@ void IntBST::printInOrder() const {
     printInOrder(root);
 }
 void IntBST::printInOrder(Node *n) const {
-    // IMPLEMENT
+  if (n) {
+    printPreOrder(n->left);
+    printPreOrder(n->right);
+    cout << n->info << " ";
+  }
 }
 
 // prints tree data post-order, with helper
@@ -84,7 +88,11 @@ void IntBST::printPostOrder() const {
     printPostOrder(root);
 }
 void IntBST::printPostOrder(Node *n) const {
-    // IMPLEMENT
+  if (n) {
+    printPreOrder(n->left);
+    cout << n->info << " ";
+    printPreOrder(n->right);
+  }
 }
 
 // return sum of values in tree
@@ -94,7 +102,8 @@ int IntBST::sum() const {
 
 // recursive helper for sum
 int IntBST::sum(Node *n) const {
-    return 0; // REPLACE THIS NON-SOLUTION
+    if(n==NULL) return 0; // REPLACE THIS NON-SOLUTION
+    return sum(n->left) + sum(n->right) + n->info;
 }
 
 // return count of values
@@ -104,12 +113,21 @@ int IntBST::count() const {
 
 // recursive helper for count
 int IntBST::count(Node *n) const {
-    return 0; // REPLACE THIS NON-SOLUTION
+  if(n==NULL) return 0; // REPLACE THIS NON-SOLUTION
+  return count(n->left) + count(n->right) + 1;
 }
 
 // returns true if value is in the tree; false if not
 bool IntBST::contains(int value) const {
-    return false; // REPLACE THIS NON-SOLUTION
+  return contains(value, root);
 }
+
+
+bool IntBST::contains(int value, Node *n) const {
+  if(n == NULL) return false; // REPLACE THIS NON-SOLUTION
+  return contains(value, n->left) || contains(value, n->right) || n->info == value;
+
+}
+
 
 // implement optional challenge methods below
