@@ -15,17 +15,26 @@ void alph(char c) {
 
 // recursively prints letter sequence c..'a'
 void ralph(char c) {
-    // IMPLEMENT
+  if (islower(c)) {
+    cout<<c;
+    if (c > 'a') ralph(c-1);
+  }
 }
 
 // recursively prints letter sequence c..'z'
 void zalph(char c) {
-    // IMPLEMENT
+  if (islower(c)) {
+    cout<<c;
+    if (c < 'z') zalph(c+1);
+  }
 }
 
 // recursively prints letter sequence 'z'..c
 void zralph(char c) {
-    // IMPLEMENT
+  if (islower(c)) {
+    if (c < 'z') zralph(c + 1);
+    cout << c;
+  } 
 }
 
 int main() {
