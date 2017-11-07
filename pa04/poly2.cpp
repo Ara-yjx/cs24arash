@@ -46,8 +46,8 @@ namespace main_savitch_5
     this->tail_ptr = source.tail_ptr;
     this->recent_ptr = source.recent_ptr;
     this->current_degree = source.current_degree;
-
   }
+
   polynomial::~polynomial( ){
     for (polynode *toDel = this->head_ptr, *nextToDel = NULL; toDel != NULL; toDel = nextToDel) {
       nextToDel = toDel -> fore();
@@ -62,12 +62,16 @@ namespace main_savitch_5
     this->recent_ptr = source.recent_ptr;
     this->current_degree = source.current_degree;
   }
+
   void polynomial::add_to_coef(double amount, unsigned int exponent) {}
   void polynomial::assign_coef(double coefficient, unsigned int exponent) {}
   void polynomial::clear( ) {}
   
   // CONSTANT MEMBER FUNCTIONS
-  double polynomial::coefficient(unsigned int exponent) const {return 0;}
+  double polynomial::coefficient(unsigned int exponent) const {
+    this->set_recent(exponent);
+    return this->recent_ptr->coef();
+  }
   
   //unsigned int polynomial::degree( ) const { return current_degree; }
   
