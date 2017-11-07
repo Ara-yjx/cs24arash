@@ -17,9 +17,8 @@ namespace main_savitch_5
     }
     
     this->recent_ptr = this->head_ptr;
-    for (int i = 0; i < exponent; i++) {
+    while(this->recent_ptr->exponent()!=exponent)
       this->recent_ptr = this->recent_ptr->fore();
-    }
   }
 
   
@@ -57,7 +56,12 @@ namespace main_savitch_5
   }
 
   // MODIFICATION MEMBER FUNCTIONS
-  polynomial& polynomial::operator =(const polynomial& source) {return *this;}
+  polynomial& polynomial::operator =(const polynomial& source) {
+    this->head_ptr = source.head_ptr;
+    this->tail_ptr = source.tail_ptr;
+    this->recent_ptr = source.recent_ptr;
+    this->current_degree = source.current_degree;
+  }
   void polynomial::add_to_coef(double amount, unsigned int exponent) {}
   void polynomial::assign_coef(double coefficient, unsigned int exponent) {}
   void polynomial::clear( ) {}
