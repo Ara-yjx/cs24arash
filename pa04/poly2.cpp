@@ -2,6 +2,10 @@
 #include <iostream>  // Provides ostream
 #include "poly2.h"
 
+using std::cout;
+using std::endl;
+
+
 namespace main_savitch_5
 {
 
@@ -11,16 +15,46 @@ namespace main_savitch_5
           << "exponent = " << exponent <<" | " << "current_degree = " << current_degree << endl;
       exit(-1);
     }
-    polynode* result = head; 
-    while(result->exponent()!=exponent) result = result->fore();
-    return result;
+    
+    this->recent_ptr = this->head_ptr;
+    for (int i = 0; i < exponent; i++) {
+      this->recent_ptr = this->recent_ptr->fore();
+    }
   }
 
   
     
-  polynomial::polynomial(double c, unsigned int exponent){}
-  polynomial::polynomial(const polynomial& source){}
-  polynomial::~polynomial( ){}
+  polynomial::polynomial(double c, unsigned int exponent){
+
+    polynode* nextNode = NULL;
+    polynode* thisNode = NULL;
+
+    for (int i = 0; i < exponent; i++) {
+      nextNode = new polynode(0, i, NULL, thisNode);
+
+      if (i==0) this->head_ptr = nextNode;
+      
+      thisNode->set_fore(nextNode);
+      thisNode = nextNode;
+    }
+
+    nextNode = new polynode(c, exponent, NULL, thisNode);
+    this->tail_ptr = nextNode;
+  }
+
+  polynomial::polynomial(const polynomial& source){
+    this->head_ptr = source.head_ptr;
+    this->tail_ptr = source.tail_ptr;
+    this->recent_ptr = source.recent_ptr;
+    this->current_degree = source.current_degree;
+
+  }
+  polynomial::~polynomial( ){
+    for (polynode *toDel = this->head_ptr, *nextToDel = NULL; toDel != NULL; toDel = nextToDel) {
+      nextToDel = toDel -> fore();
+      delete(toDel);
+    }
+  }
 
   // MODIFICATION MEMBER FUNCTIONS
   polynomial& polynomial::operator =(const polynomial& source) {return *this;}
